@@ -1,0 +1,39 @@
+// SQLite is used so the app runs locally with zero setup — no Postgres server
+// needed for a demo. Swapping provider = "postgresql" + a DATABASE_URL is a
+// one-line change for production; the schema itself doesn't need to change
+// except that Justification/ClaimStatus could become native enums on Postgres.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Claim {
+  id              String       @id @default(uuid())
+  productId       String
+  claimText       String
+  claimType       String       // efficacy | sensory | environmental
+  status          String       @default("PENDING") // PENDING | APPROVED | REJECTED | FORMULATED | ASSESSED
+  rejectionReason String?
+  formulaRef      String?      // reference/ID only — real formula IP stays out of this table
+  createdAt       DateTime     @default(now())
+  updatedAt       DateTime     @updatedAt
+  assessments     Assessment[]
+}
+
+model Assessment {
+  id              String   @id @default(uuid())
+  claimId         String
+  claim           Claim    @relation(fields: [claimId], references: [id])
+  evidenceText    String
+  sampleSize      Int?
+  justified       String?  // JUSTIFIED | PARTIAL | NOT_JUSTIFIED
+  confidenceScore Int?
+  reasoning       String?
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}

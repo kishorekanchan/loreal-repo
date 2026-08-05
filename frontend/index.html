@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>L'Oréal Claims Intelligence Engine</title>
+    <style>
+      body { font-family: -apple-system, sans-serif; max-width: 900px; margin: 40px auto; padding: 0 20px; color: #222; }
+      h1 { font-size: 20px; } h2 { font-size: 16px; margin-top: 32px; }
+      input, textarea, select { width: 100%; padding: 8px; margin: 4px 0 12px; box-sizing: border-box; }
+      button { padding: 8px 16px; cursor: pointer; }
+      .card { border: 1px solid #ddd; border-radius: 8px; padding: 16px; margin-bottom: 12px; }
+      .status { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 12px; background: #eee; }
+      .status-PENDING { background: #fff3cd; }
+      .status-APPROVED { background: #d1ecf1; }
+      .status-REJECTED { background: #f8d7da; }
+      .status-FORMULATED { background: #d4edda; }
+      .status-ASSESSED { background: #cce5ff; }
+      .verdict-JUSTIFIED { color: #155724; font-weight: bold; }
+      .verdict-PARTIAL { color: #856404; font-weight: bold; }
+      .verdict-NOT_JUSTIFIED { color: #721c24; font-weight: bold; }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
